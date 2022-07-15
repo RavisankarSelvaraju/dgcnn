@@ -11,8 +11,8 @@ import dataset_util
 
 #load data open3d==0.10.0
 #dataset_dir = '/media/mhwasil/WDEXT11/HDD4/pointcloud_dataset/pcd/b-it-bots/combined_pointcloud_dataset'
-dataset_dir = "/media/mhwasil/WDEXT11/HDD4/pointcloud_dataset/pcd/b-it-bots/realsense_d435_2021"
-dataset_name = "b_it_bots_at_work_2021"
+dataset_dir = "/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/data/nagoya_dataset_split"
+dataset_name = "nagoya_dataset_split"
 train_dir = os.path.join(dataset_dir, "train")
 test_dir = os.path.join(dataset_dir, "test")
 all_dataset = [train_dir, test_dir]
@@ -69,9 +69,11 @@ for split in ["train", "test"]:
     data_dict = {}
     data_dict['data'] = data
     data_dict['labels'] = labels
+
+    print(data_dict['labels'])
     
     # save pickle file
-    dataset_util.save_dataset_and_compress(data_dict, dataset_dir+'/{}_{}'.format(dataset_name, split))
+    dataset_util.save_dataset_and_compress(data_dict, dataset_dir+'/{}_{}'.format(dataset_name, split)) # should change the pickling method, 
     
     data = []
     labels = []

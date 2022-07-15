@@ -25,18 +25,21 @@ import sklearn.metrics as metrics
 
 
 def _init_():
-    if not os.path.exists('checkpoints'):
-        os.makedirs('checkpoints')
-    if not os.path.exists('checkpoints/'+args.exp_name):
-        os.makedirs('checkpoints/'+args.exp_name)
-    if not os.path.exists('checkpoints/'+args.exp_name+'/'+'models'):
-        os.makedirs('checkpoints/'+args.exp_name+'/'+'models')
-    os.system('cp main.py checkpoints'+'/'+args.exp_name+'/'+'main.py.backup')
-    os.system('cp model.py checkpoints' + '/' + args.exp_name + '/' + 'model.py.backup')
-    os.system('cp util.py checkpoints' + '/' + args.exp_name + '/' + 'util.py.backup')
-    os.system('cp data.py checkpoints' + '/' + args.exp_name + '/' + 'data.py.backup')
+    # if not os.path.exists('checkpoints'):
+    #     os.makedirs('checkpoints')
+    # if not os.path.exists('checkpoints/'+args.exp_name):
+    #     os.makedirs('checkpoints/'+args.exp_name)
+    # if not os.path.exists('checkpoints/'+args.exp_name+'/'+'models'):
+    #     os.makedirs('checkpoints/'+args.exp_name+'/'+'models')
+    # os.system('cp main.py checkpoints'+'/'+args.exp_name+'/'+'main.py.backup')
+    # os.system('cp model.py checkpoints' + '/' + args.exp_name + '/' + 'model.py.backup')
+    # os.system('cp util.py checkpoints' + '/' + args.exp_name + '/' + 'util.py.backup')
+    # os.system('cp data.py checkpoints' + '/' + args.exp_name + '/' + 'data.py.backup')
+
+    print("====init====")
 
 def train(args, io):
+
     train_loader = DataLoader(ModelNet40(partition='train', num_points=args.num_points), num_workers=8,
                               batch_size=args.batch_size, shuffle=True, drop_last=True)
     test_loader = DataLoader(ModelNet40(partition='test', num_points=args.num_points), num_workers=8,
@@ -68,6 +71,7 @@ def train(args, io):
     criterion = cal_loss
 
     best_test_acc = 0
+    
     for epoch in range(args.epochs):
         scheduler.step()
         ####################
@@ -209,7 +213,13 @@ if __name__ == "__main__":
 
     _init_()
 
-    io = IOStream('checkpoints/' + args.exp_name + '/run.log')
+    # print(args)
+
+
+    # io = IOStream('checkpoints/' + args.exp_name + '/run.log')
+
+    io = IOStream('/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/checkpoints/dgcnn_1024/run.log')
+
     io.cprint(str(args))
 
     args.cuda = not args.no_cuda and torch.cuda.is_available()

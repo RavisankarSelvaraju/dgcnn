@@ -24,7 +24,7 @@ def download():
     if not os.path.exists(os.path.join(DATA_DIR, 'modelnet40_ply_hdf5_2048')):
         www = 'https://shapenet.cs.stanford.edu/media/modelnet40_ply_hdf5_2048.zip'
         zipfile = os.path.basename(www)
-        os.system('wget %s; unzip %s' % (www, zipfile))
+        os.system('wget %s --no-check-certificate; unzip %s' % (www, zipfile))
         os.system('mv %s %s' % (zipfile[:-4], DATA_DIR))
         os.system('rm %s' % (zipfile))
 
@@ -47,7 +47,7 @@ def load_data(partition):
     return all_data, all_label
 
 
-def translate_pointcloud(pointcloud):
+def translate_pointcloud(pointcloud): 
     xyz1 = np.random.uniform(low=2./3., high=3./2., size=[3])
     xyz2 = np.random.uniform(low=-0.2, high=0.2, size=[3])
        
@@ -55,7 +55,7 @@ def translate_pointcloud(pointcloud):
     return translated_pointcloud
 
 
-def jitter_pointcloud(pointcloud, sigma=0.01, clip=0.02):
+def jitter_pointcloud(pointcloud, sigma=0.01, clip=0.02): # adding noise to the pointcloud
     N, C = pointcloud.shape
     pointcloud += np.clip(sigma * np.random.randn(N, C), -1*clip, clip)
     return pointcloud

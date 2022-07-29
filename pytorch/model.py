@@ -32,7 +32,7 @@ def get_graph_feature(x, k=20, idx=None):
     num_points = x.size(2)
     x = x.view(batch_size, -1, num_points)
     if idx is None:
-        idx = knn(x, k=k)   # (batch_size, num_points, k)
+        idx = knn(x, k=k)   # (batch_size, num_points, k) 
     device = torch.device('cuda')
 
     idx_base = torch.arange(0, batch_size, device=device).view(-1, 1, 1)*num_points
@@ -44,12 +44,19 @@ def get_graph_feature(x, k=20, idx=None):
     _, num_dims, _ = x.size()
 
     x = x.transpose(2, 1).contiguous()   # (batch_size, num_points, num_dims)  -> (batch_size*num_points, num_dims) #   batch_size * num_points * k + range(0, batch_size*num_points)
+
     feature = x.view(batch_size*num_points, -1)[idx, :]
     feature = feature.view(batch_size, num_points, k, num_dims) 
     x = x.view(batch_size, num_points, 1, num_dims).repeat(1, 1, k, 1)
+
+
+    feature = torch.cat((feature - x,x),dim =0).permute(0, 3, 1, 2).contiguous()
+    print(feature.shape)
+
+    # we needed dim 0 to be 64 and the channel value to be 6 
+    # changing the torch.cat because it is adding additional channel in the feature map
     
-    feature = torch.cat((feature-x, x), dim=3).permute(0, 3, 1, 2).contiguous()
-  
+    feature = feature.type(torch.cuda.FloatTensor) # weights are in FloatTensor format and not in DoubleTensor format
     return feature
 
 
@@ -123,6 +130,7 @@ class DGCNN(nn.Module):
     def forward(self, x):
         batch_size = x.size(0)
         x = get_graph_feature(x, k=self.k)
+
         x = self.conv1(x)
         x1 = x.max(dim=-1, keepdim=False)[0]
 

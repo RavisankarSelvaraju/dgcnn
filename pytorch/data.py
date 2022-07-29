@@ -17,6 +17,8 @@ import gzip
 import numpy as np
 import pickle
 from torch.utils.data import Dataset
+import dataset_util
+
 
 
 # def translate_pointcloud(pointcloud): What is this translation for ?
@@ -39,19 +41,16 @@ def load_data(partition):
     file_path_test = '/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/data/nagoya_dataset_split/nagoya_dataset_split_test.pgz'
 
     if partition == 'train':
+        
+        data, label = dataset_util.load_pickle_file_with_label(file_path_train,compressed = True)
 
-        with open(file_path_train, 'rb') as ifp:
-            train_data, train_label = pickle.load(ifp)
-
-        return train_data, train_label
-
+        return data, label
+        
     elif partition == 'test':
-
-        with open(file_path_test, 'rb') as ifp:
-            test_data, test_label = pickle.load(ifp)
-
-        return test_data, test_label
-
+        
+        data, label = dataset_util.load_pickle_file_with_label(file_path_test,compressed = True)
+        
+        return data, label
 
 class nagoya_dataset(Dataset):
 
@@ -64,6 +63,7 @@ class nagoya_dataset(Dataset):
     def __getitem__(self, item):            # why only training data is translated?
 
         pointcloud = self.data[item][:self.num_points]
+
         label = self.label[item]
 
         if self.partition == 'train':

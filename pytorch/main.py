@@ -16,7 +16,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torch.optim.lr_scheduler import CosineAnnealingLR
-from data import ModelNet40
+from data import nagoya_dataset
 from model import PointNet, DGCNN
 import numpy as np
 from torch.utils.data import DataLoader
@@ -42,9 +42,9 @@ def train(args, io):
 
 
 
-    train_loader = DataLoader(ModelNet40(partition='train', num_points=args.num_points), num_workers=8,
+    train_loader = DataLoader(nagoya_dataset(partition='train', num_points=args.num_points), num_workers=8,
                               batch_size=args.batch_size, shuffle=True, drop_last=True)
-    test_loader = DataLoader(ModelNet40(partition='test', num_points=args.num_points), num_workers=8,
+    test_loader = DataLoader(nagoya_dataset(partition='test', num_points=args.num_points), num_workers=8,
                              batch_size=args.test_batch_size, shuffle=True, drop_last=False)
 
 
@@ -89,10 +89,18 @@ def train(args, io):
         train_pred = []
         train_true = []
         for data, label in train_loader:
+
             data, label = data.to(device), label.to(device).squeeze()
             data = data.permute(0, 2, 1)
+
             batch_size = data.size()[0]
             opt.zero_grad()
+
+            print("printing data shape")
+            print(data.shape)
+
+### Works till here ###
+
             logits = model(data)
             loss = criterion(logits, label)
             loss.backward()
@@ -146,7 +154,7 @@ def train(args, io):
 
 
 def test(args, io):
-    test_loader = DataLoader(ModelNet40(partition='test', num_points=args.num_points),
+    test_loader = DataLoader(nagoya_dataset(partition='test', num_points=args.num_points),
                              batch_size=args.test_batch_size, shuffle=True, drop_last=False)
 
     device = torch.device("cuda" if args.cuda else "cpu")

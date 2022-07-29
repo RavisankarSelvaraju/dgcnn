@@ -7,6 +7,7 @@ from sklearn.decomposition import PCA
 import os
 import glob
 import dataset_util
+import gzip
 
 
 #load data open3d==0.10.0
@@ -69,8 +70,6 @@ for split in ["train", "test"]:
     data_dict = {}
     data_dict['data'] = data
     data_dict['labels'] = labels
-
-    print(data_dict['labels'])
     
     # save pickle file
     dataset_util.save_dataset_and_compress(data_dict, dataset_dir+'/{}_{}'.format(dataset_name, split)) # should change the pickling method, 

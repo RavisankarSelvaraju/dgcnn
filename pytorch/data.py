@@ -37,7 +37,7 @@ import dataset_util
 
 def load_data(partition):
 
-    cluster = False
+    cluster = True
 
     if cluster:
 

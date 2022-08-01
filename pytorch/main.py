@@ -11,6 +11,7 @@
 from __future__ import print_function
 # import os
 import argparse
+from sklearn import cluster
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -25,6 +26,7 @@ import sklearn.metrics as metrics
 
 
 def _init_():
+
     # if not os.path.exists('checkpoints'):
     #     os.makedirs('checkpoints')
     # if not os.path.exists('checkpoints/'+args.exp_name):
@@ -229,10 +231,13 @@ if __name__ == "__main__":
 
     # print(args)
 
+    cluster_run = True
+    io = IOStream('checkpoints/' + args.exp_name + '/run.log')
 
-    # io = IOStream('checkpoints/' + args.exp_name + '/run.log')
-
-    io = IOStream('/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/checkpoints/dgcnn_1024/run.log')
+    if cluster_run:
+        io = IOStream('/scratch/rselva2s/bit-bots/dgcnn/checkpoints/exp/run.log')
+    else:
+        io = IOStream('/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/checkpoints/dgcnn_1024/run.log')
 
     io.cprint(str(args))
 

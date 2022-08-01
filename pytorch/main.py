@@ -9,7 +9,7 @@
 
 
 from __future__ import print_function
-import os
+# import os
 import argparse
 import torch
 import torch.nn as nn
@@ -43,7 +43,7 @@ def train(args, io):
 
 
     train_loader = DataLoader(nagoya_dataset(partition='train', num_points=args.num_points), num_workers=8,
-                              batch_size=args.batch_size, shuffle=True, drop_last=True)
+                              batch_size=32, shuffle=True, drop_last=True)
     test_loader = DataLoader(nagoya_dataset(partition='test', num_points=args.num_points), num_workers=8,
                              batch_size=args.test_batch_size, shuffle=True, drop_last=False)
 

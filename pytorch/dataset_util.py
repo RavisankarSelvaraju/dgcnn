@@ -1,9 +1,9 @@
-import os
+# import os
 import gzip
 import numpy as np
-import h5py
+# import h5py
 import pickle
-import sklearn
+# import sklearn
 from sklearn.decomposition import PCA
 import open3d
 

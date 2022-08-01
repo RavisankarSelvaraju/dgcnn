@@ -8,14 +8,14 @@
 """
 
 
-import os
-import sys
-import glob
+# import os
+# import sys
+# import glob
 
 
-import gzip
+# import gzip
 import numpy as np
-import pickle
+# import pickle
 from torch.utils.data import Dataset
 import dataset_util
 
@@ -37,7 +37,7 @@ import dataset_util
 
 def load_data(partition):
 
-    cluster = True
+    cluster = False
 
     if cluster:
 
@@ -90,10 +90,10 @@ if __name__ == '__main__':
     train = nagoya_dataset(1024)
     test = nagoya_dataset(1024, 'test')
 
-    for data, label in train:
-        print(data)
-        print(label)
+    # for data, label in train:
+        # print(data)
+        # print(label)
 
-        print("-----")
+        # print("-----")
 
 

@@ -90,6 +90,7 @@ def train(args, io):
         model.train()
         train_pred = []
         train_true = []
+        print("++++++++ ++++++++  ++++++++  ++++++++  START of Epoch : %d ++++++++  ++++++++  ++++++++  ++++++++", epoch)
         print("Training ...")
         for data, label in train_loader:
 
@@ -153,11 +154,14 @@ def train(args, io):
         test_pred = np.concatenate(test_pred)
         test_acc = metrics.accuracy_score(test_true, test_pred)
         avg_per_class_acc = metrics.balanced_accuracy_score(test_true, test_pred)
+        print("\n")
         outstr = 'Valdation %d, loss: %.6f, validation acc: %.6f, validation avg acc: %.6f' % (epoch,
                                                                               test_loss*1.0/count,
                                                                               test_acc,
                                                                               avg_per_class_acc)
         io.cprint(outstr)
+
+        print("========== ========== ========== ========== End of Epoch : %d ========== ========== ========== ==========",epoch)
         if test_acc >= best_test_acc:
             best_test_acc = test_acc
             torch.save(model.state_dict(), 'checkpoints/%s/models/model.t7' % args.exp_name)
@@ -180,7 +184,7 @@ def test(args, io):
     test_pred = []
 
     print("Testing ...")
-    
+
     for data, label in test_loader:
 
         data, label = data.to(device), label.to(device).squeeze()

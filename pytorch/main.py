@@ -11,6 +11,7 @@
 from __future__ import print_function
 import os
 import argparse
+from tarfile import TarInfo
 from sklearn import cluster
 import torch
 import torch.nn as nn
@@ -80,6 +81,13 @@ def train(args, io):
 
     best_test_acc = 0
     
+    training_acc = []
+    valid_acc = []
+    training_loss = []
+    valid_loss = []
+
+
+
     for epoch in range(args.epochs):
         
         ####################
@@ -128,6 +136,9 @@ def train(args, io):
                                                                                  metrics.balanced_accuracy_score(
                                                                                      train_true, train_pred))
 
+        training_acc.append(metrics.accuracy_score(train_true, train_pred))
+        training_loss.append(train_loss*1.0/count)
+
         io.cprint(outstr)
         print("\n")
         ####################
@@ -160,13 +171,17 @@ def train(args, io):
                                                                               test_loss*1.0/count,
                                                                               test_acc,
                                                                               avg_per_class_acc)
+
+        valid_acc.append(test_acc)
+        valid_loss.append(test_loss*1.0/count)
+
         io.cprint(outstr)
         print("\n")
         print(f'========== ========== ========== ========== End of Epoch : {epoch} ========== ========== ========== ==========')
 
         if test_acc >= best_test_acc:
             best_test_acc = test_acc
-            torch.save(model.state_dict(), 'checkpoints/%s/models/model.t7' % args.exp_name)
+            torch.save(model.state_dict(), './checkpoints/test_1/models/model.t7' % args.exp_name)
 
 
 def test(args, io):
@@ -220,7 +235,7 @@ if __name__ == "__main__":
     parser.add_argument('--test_batch_size', type=int, default=16, metavar='batch_size',
                         help='Size of batch)')
 
-    parser.add_argument('--epochs', type=int, default=250, metavar='N',
+    parser.add_argument('--epochs', type=int, default=10, metavar='N',
                         help='number of episode to train ')
     parser.add_argument('--use_sgd', type=bool, default=True,
                         help='Use SGD')

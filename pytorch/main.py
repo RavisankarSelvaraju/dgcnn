@@ -90,8 +90,9 @@ def train(args, io):
         model.train()
         train_pred = []
         train_true = []
-        print("++++++++ ++++++++  ++++++++  ++++++++  START of Epoch : %d ++++++++  ++++++++  ++++++++  ++++++++", epoch)
-        print("Training ...")
+        print("\n")
+        print(f'++++++++ ++++++++  ++++++++  ++++++++  START of Epoch : {epoch} ++++++++  ++++++++  ++++++++  ++++++++')
+        print("Training ...\n")
         for data, label in train_loader:
 
             data, label = data.to(device), label.to(device).squeeze()
@@ -100,7 +101,7 @@ def train(args, io):
             batch_size = data.size()[0]
             opt.zero_grad()
 
-            print("*", end=" ")
+            # print("*", end=" ")
 
             # print("printing data shape")
             # print(data.shape)
@@ -137,7 +138,7 @@ def train(args, io):
         model.eval()
         test_pred = []
         test_true = []
-        print("Validating ...")
+        print("Validating ...\n")
         for data, label in test_loader:
             data, label = data.to(device), label.to(device).squeeze()
             data = data.permute(0, 2, 1)
@@ -149,19 +150,20 @@ def train(args, io):
             test_loss += loss.item() * batch_size
             test_true.append(label.cpu().numpy())
             test_pred.append(preds.detach().cpu().numpy())
-            print("*", end=" ")
+            # print("*", end=" ")
         test_true = np.concatenate(test_true)
         test_pred = np.concatenate(test_pred)
         test_acc = metrics.accuracy_score(test_true, test_pred)
         avg_per_class_acc = metrics.balanced_accuracy_score(test_true, test_pred)
-        print("\n")
+        # print("\n")
         outstr = 'Valdation %d, loss: %.6f, validation acc: %.6f, validation avg acc: %.6f' % (epoch,
                                                                               test_loss*1.0/count,
                                                                               test_acc,
                                                                               avg_per_class_acc)
         io.cprint(outstr)
-
-        print("========== ========== ========== ========== End of Epoch : %d ========== ========== ========== ==========",epoch)
+        print("\n")
+        print(f'========== ========== ========== ========== End of Epoch : {epoch} ========== ========== ========== ==========')
+        print("\n")
         if test_acc >= best_test_acc:
             best_test_acc = test_acc
             torch.save(model.state_dict(), 'checkpoints/%s/models/model.t7' % args.exp_name)

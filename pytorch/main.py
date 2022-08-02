@@ -9,7 +9,7 @@
 
 
 from __future__ import print_function
-# import os
+import os
 import argparse
 from sklearn import cluster
 import torch
@@ -27,25 +27,25 @@ import sklearn.metrics as metrics
 
 def _init_():
 
-    # if not os.path.exists('checkpoints'):
-    #     os.makedirs('checkpoints')
-    # if not os.path.exists('checkpoints/'+args.exp_name):
-    #     os.makedirs('checkpoints/'+args.exp_name)
-    # if not os.path.exists('checkpoints/'+args.exp_name+'/'+'models'):
-    #     os.makedirs('checkpoints/'+args.exp_name+'/'+'models')
-    # os.system('cp main.py checkpoints'+'/'+args.exp_name+'/'+'main.py.backup')
-    # os.system('cp model.py checkpoints' + '/' + args.exp_name + '/' + 'model.py.backup')
-    # os.system('cp util.py checkpoints' + '/' + args.exp_name + '/' + 'util.py.backup')
-    # os.system('cp data.py checkpoints' + '/' + args.exp_name + '/' + 'data.py.backup')
+    if not os.path.exists('checkpoints'):
+        os.makedirs('checkpoints')
+    if not os.path.exists('checkpoints/'+args.exp_name):
+        os.makedirs('checkpoints/'+args.exp_name)
+    if not os.path.exists('checkpoints/'+args.exp_name+'/'+'models'):
+        os.makedirs('checkpoints/'+args.exp_name+'/'+'models')
+    os.system('cp main.py checkpoints'+'/'+args.exp_name+'/'+'main.py.backup')
+    os.system('cp model.py checkpoints' + '/' + args.exp_name + '/' + 'model.py.backup')
+    os.system('cp util.py checkpoints' + '/' + args.exp_name + '/' + 'util.py.backup')
+    os.system('cp data.py checkpoints' + '/' + args.exp_name + '/' + 'data.py.backup')
 
-    print("====init====")
+    print("====init====")     
 
 def train(args, io):
 
 
 
     train_loader = DataLoader(nagoya_dataset(partition='train', num_points=args.num_points), num_workers=8,
-                              batch_size=2, shuffle=True, drop_last=True)
+                              batch_size=32, shuffle=True, drop_last=True)
     test_loader = DataLoader(nagoya_dataset(partition='test', num_points=args.num_points), num_workers=8,
                              batch_size=args.test_batch_size, shuffle=True, drop_last=False)
 
@@ -195,8 +195,8 @@ if __name__ == "__main__":
     parser.add_argument('--model', type=str, default='dgcnn', metavar='N',
                         choices=['pointnet', 'dgcnn'],
                         help='Model to use, [pointnet, dgcnn]')
-    parser.add_argument('--dataset', type=str, default='modelnet40', metavar='N',
-                        choices=['modelnet40'])
+    parser.add_argument('--dataset', type=str, default='nagoya_dataset', metavar='N',
+                        choices=['nagoya_dataset'])
     parser.add_argument('--batch_size', type=int, default=2, metavar='batch_size',
                         help='Size of batch)')
     parser.add_argument('--test_batch_size', type=int, default=16, metavar='batch_size',

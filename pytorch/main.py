@@ -45,7 +45,7 @@ def train(args, io):
 
 
     train_loader = DataLoader(nagoya_dataset(partition='train', num_points=args.num_points), num_workers=8,
-                              batch_size=32, shuffle=True, drop_last=True)
+                              batch_size=args.batch_size, shuffle=True, drop_last=True)
     test_loader = DataLoader(nagoya_dataset(partition='test', num_points=args.num_points), num_workers=8,
                              batch_size=args.test_batch_size, shuffle=True, drop_last=False)
 
@@ -197,10 +197,12 @@ if __name__ == "__main__":
                         help='Model to use, [pointnet, dgcnn]')
     parser.add_argument('--dataset', type=str, default='nagoya_dataset', metavar='N',
                         choices=['nagoya_dataset'])
-    parser.add_argument('--batch_size', type=int, default=2, metavar='batch_size',
+
+    parser.add_argument('--batch_size', type=int, default=16, metavar='batch_size',
                         help='Size of batch)')
     parser.add_argument('--test_batch_size', type=int, default=16, metavar='batch_size',
                         help='Size of batch)')
+
     parser.add_argument('--epochs', type=int, default=250, metavar='N',
                         help='number of episode to train ')
     parser.add_argument('--use_sgd', type=bool, default=True,

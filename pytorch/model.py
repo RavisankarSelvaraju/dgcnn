@@ -49,15 +49,15 @@ def get_graph_feature(x, k=20, idx=None, flag_cat= True):
     feature = feature.view(batch_size, num_points, k, num_dims) 
     x = x.view(batch_size, num_points, 1, num_dims).repeat(1, 1, k, 1)
 
-    print("shape of x",x.shape)
-    print("feature shape before -->",feature.shape)
+    # print("shape of x",x.shape)
+    # print("feature shape before -->",feature.shape)
     if flag_cat:
         feature = torch.cat((feature-x, x-feature), dim=3).permute(0, 3, 1, 2).contiguous()
     else:
         feature = (feature - x).permute(0, 3, 1, 2).contiguous()
 
-    print("feature shape after -->",feature.shape)
-    print("==========================")
+    # print("feature shape after -->",feature.shape)
+    # print("==========================")
 
     # we needed dim 0 to be 64 and the channel value to be 6 
     # changing the torch.cat because it is adding additional channel in the feature map

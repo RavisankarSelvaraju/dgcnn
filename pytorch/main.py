@@ -90,6 +90,7 @@ def train(args, io):
         model.train()
         train_pred = []
         train_true = []
+        print("Training ...")
         for data, label in train_loader:
 
             data, label = data.to(device), label.to(device).squeeze()
@@ -98,8 +99,10 @@ def train(args, io):
             batch_size = data.size()[0]
             opt.zero_grad()
 
-            print("printing data shape")
-            print(data.shape)
+            print("*", end=" ")
+
+            # print("printing data shape")
+            # print(data.shape)
 
 ### Works till here ###
 
@@ -112,6 +115,7 @@ def train(args, io):
             train_loss += loss.item() * batch_size
             train_true.append(label.cpu().numpy())
             train_pred.append(preds.detach().cpu().numpy())
+
         train_true = np.concatenate(train_true)
         train_pred = np.concatenate(train_pred)
         scheduler.step()
@@ -121,6 +125,7 @@ def train(args, io):
                                                                                      train_true, train_pred),
                                                                                  metrics.balanced_accuracy_score(
                                                                                      train_true, train_pred))
+        print("\n")
         io.cprint(outstr)
 
         ####################
@@ -131,6 +136,7 @@ def train(args, io):
         model.eval()
         test_pred = []
         test_true = []
+        print("Validating ...")
         for data, label in test_loader:
             data, label = data.to(device), label.to(device).squeeze()
             data = data.permute(0, 2, 1)
@@ -142,11 +148,12 @@ def train(args, io):
             test_loss += loss.item() * batch_size
             test_true.append(label.cpu().numpy())
             test_pred.append(preds.detach().cpu().numpy())
+            print("*", end=" ")
         test_true = np.concatenate(test_true)
         test_pred = np.concatenate(test_pred)
         test_acc = metrics.accuracy_score(test_true, test_pred)
         avg_per_class_acc = metrics.balanced_accuracy_score(test_true, test_pred)
-        outstr = 'Test %d, loss: %.6f, test acc: %.6f, test avg acc: %.6f' % (epoch,
+        outstr = 'Valdation %d, loss: %.6f, validation acc: %.6f, validation avg acc: %.6f' % (epoch,
                                                                               test_loss*1.0/count,
                                                                               test_acc,
                                                                               avg_per_class_acc)
@@ -171,6 +178,9 @@ def test(args, io):
     count = 0.0
     test_true = []
     test_pred = []
+
+    print("Testing ...")
+    
     for data, label in test_loader:
 
         data, label = data.to(device), label.to(device).squeeze()

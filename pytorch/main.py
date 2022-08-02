@@ -138,7 +138,7 @@ def train(args, io):
         model.eval()
         test_pred = []
         test_true = []
-        print("Validating ...\n")
+        print("Validating ...")
         for data, label in test_loader:
             data, label = data.to(device), label.to(device).squeeze()
             data = data.permute(0, 2, 1)

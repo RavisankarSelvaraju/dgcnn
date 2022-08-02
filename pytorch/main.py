@@ -27,16 +27,16 @@ import sklearn.metrics as metrics
 
 def _init_():
 
-    if not os.path.exists('checkpoints'):
-        os.makedirs('checkpoints')
-    if not os.path.exists('checkpoints/'+args.exp_name):
-        os.makedirs('checkpoints/'+args.exp_name)
-    if not os.path.exists('checkpoints/'+args.exp_name+'/'+'models'):
-        os.makedirs('checkpoints/'+args.exp_name+'/'+'models')
-    os.system('cp main.py checkpoints'+'/'+args.exp_name+'/'+'main.py.backup')
-    os.system('cp model.py checkpoints' + '/' + args.exp_name + '/' + 'model.py.backup')
-    os.system('cp util.py checkpoints' + '/' + args.exp_name + '/' + 'util.py.backup')
-    os.system('cp data.py checkpoints' + '/' + args.exp_name + '/' + 'data.py.backup')
+    # if not os.path.exists('checkpoints'):
+    #     os.makedirs('checkpoints')
+    # if not os.path.exists('checkpoints/'+args.exp_name):
+    #     os.makedirs('checkpoints/'+args.exp_name)
+    # if not os.path.exists('checkpoints/'+args.exp_name+'/'+'models'):
+    #     os.makedirs('checkpoints/'+args.exp_name+'/'+'models')
+    # os.system('cp main.py checkpoints'+'/'+args.exp_name+'/'+'main.py.backup')
+    # os.system('cp model.py checkpoints' + '/' + args.exp_name + '/' + 'model.py.backup')
+    # os.system('cp util.py checkpoints' + '/' + args.exp_name + '/' + 'util.py.backup')
+    # os.system('cp data.py checkpoints' + '/' + args.exp_name + '/' + 'data.py.backup')
 
     print("====init====")     
 
@@ -81,7 +81,7 @@ def train(args, io):
     best_test_acc = 0
     
     for epoch in range(args.epochs):
-        scheduler.step()
+        
         ####################
         # Train
         ####################
@@ -114,6 +114,7 @@ def train(args, io):
             train_pred.append(preds.detach().cpu().numpy())
         train_true = np.concatenate(train_true)
         train_pred = np.concatenate(train_pred)
+        scheduler.step()
         outstr = 'Train %d, loss: %.6f, train acc: %.6f, train avg acc: %.6f' % (epoch,
                                                                                  train_loss*1.0/count,
                                                                                  metrics.accuracy_score(

@@ -265,13 +265,14 @@ if __name__ == "__main__":
 
     # print(args)
 
-    cluster_run = True
+    # cluster_run = True
+
     io = IOStream('checkpoints/' + args.exp_name + '/run.log')
 
-    if cluster_run:
-        io = IOStream('/scratch/rselva2s/bit-bots/dgcnn/checkpoints/exp/run.log')
-    else:
-        io = IOStream('/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/checkpoints/dgcnn_1024/run.log')
+    # if cluster_run:
+    #     io = IOStream('/scratch/rselva2s/bit-bots/dgcnn/checkpoints/exp/run.log')
+    # else:
+    #     io = IOStream('/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/checkpoints/dgcnn_1024/run.log')
 
     io.cprint(str(args))
 

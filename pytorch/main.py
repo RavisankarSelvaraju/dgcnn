@@ -92,7 +92,7 @@ def train(args, io):
         train_true = []
         print("\n")
         print(f'++++++++ ++++++++  ++++++++  ++++++++  START of Epoch : {epoch} ++++++++  ++++++++  ++++++++  ++++++++')
-        print("Training ...\n")
+        print("Training ...")
         for data, label in train_loader:
 
             data, label = data.to(device), label.to(device).squeeze()
@@ -127,9 +127,9 @@ def train(args, io):
                                                                                      train_true, train_pred),
                                                                                  metrics.balanced_accuracy_score(
                                                                                      train_true, train_pred))
-        print("\n")
-        io.cprint(outstr)
 
+        io.cprint(outstr)
+        print("\n")
         ####################
         # Test
         ####################
@@ -163,7 +163,7 @@ def train(args, io):
         io.cprint(outstr)
         print("\n")
         print(f'========== ========== ========== ========== End of Epoch : {epoch} ========== ========== ========== ==========')
-        print("\n")
+
         if test_acc >= best_test_acc:
             best_test_acc = test_acc
             torch.save(model.state_dict(), 'checkpoints/%s/models/model.t7' % args.exp_name)

@@ -24,7 +24,7 @@ import numpy as np
 from torch.utils.data import DataLoader
 from util import cal_loss, IOStream
 import sklearn.metrics as metrics
-
+import pandas as pd
 
 def _init_():
 
@@ -115,8 +115,6 @@ def train(args, io):
             # print("printing data shape")
             # print(data.shape)
 
-### Works till here ###
-
             logits = model(data)
             loss = criterion(logits, label)
             loss.backward()
@@ -183,6 +181,8 @@ def train(args, io):
         if test_acc >= best_test_acc:
             best_test_acc = test_acc
             torch.save(model.state_dict(), 'checkpoints/%s/models/model.t7' % args.exp_name)
+
+    pd.DataFrame({"train_acc": training_acc, "valid_acc": valid_acc, "train_loss": training_loss, "valid_loss": valid_loss}).to_csv("checkpoints/%s/models/resuts.csv" % args.exp_name)
 
 
 def test(args, io):
@@ -288,5 +288,6 @@ if __name__ == "__main__":
 
     if not args.eval:
         train(args, io)
+        
     else:
         test(args, io)

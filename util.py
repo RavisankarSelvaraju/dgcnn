@@ -15,7 +15,7 @@ import numpy as np
 import pickle
 from sklearn.decomposition import PCA
 import open3d 
-import splitfolders
+# import splitfolders
 import numpy as np
 import torch
 import torch.nn.functional as F

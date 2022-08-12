@@ -95,7 +95,7 @@ def train(args, io):
         print("Training ...")
         for data, label in train_loader:
 
-            print(data.size())
+            # print(data.size())
 
             data, label = data.to(device), label.to(device).squeeze()
             data = data.permute(0, 2, 1)

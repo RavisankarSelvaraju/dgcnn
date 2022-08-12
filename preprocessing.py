@@ -1,11 +1,14 @@
-from ctypes import util
 import numpy as np
 import os
+import util
 from util import split_data
 
 
-split_data( source_dir="dataset/nagoya_dataset",
-            destination_dir="dataset/nagoya_dataset_split",ratio = (.8, .2) )
+
+if not os.path.exists('dataset/nagoya_dataset_split'):
+
+    split_data( source_dir="dataset/nagoya_dataset",
+                destination_dir="dataset/nagoya_dataset_split",ratio = (.8, .2) )
 
 dataset_dir = "dataset/nagoya_dataset_split"
 dataset_name = "nagoya_dataset_split"

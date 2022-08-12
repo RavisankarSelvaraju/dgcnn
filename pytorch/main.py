@@ -231,9 +231,9 @@ if __name__ == "__main__":
     parser.add_argument('--dataset', type=str, default='nagoya_dataset', metavar='N',
                         choices=['nagoya_dataset'])
 
-    parser.add_argument('--batch_size', type=int, default=16, metavar='batch_size',
+    parser.add_argument('--batch_size', type=int, default=32, metavar='batch_size',
                         help='Size of batch)')
-    parser.add_argument('--test_batch_size', type=int, default=16, metavar='batch_size',
+    parser.add_argument('--test_batch_size', type=int, default=32, metavar='batch_size',
                         help='Size of batch)')
 
     parser.add_argument('--epochs', type=int, default=10, metavar='N',

@@ -1,0 +1,47 @@
+Namespace(exp_name='exp', model='dgcnn', dataset='nagoya_dataset', batch_size=16, test_batch_size=16, epochs=10, use_sgd=True, lr=0.001, momentum=0.9, no_cuda=False, seed=1, eval=False, num_points=1024, dropout=0.5, emb_dims=1024, k=20, model_path='')
+Using GPU : 0 from 2 devices
+Namespace(exp_name='exp', model='dgcnn', dataset='nagoya_dataset', batch_size=16, test_batch_size=16, epochs=10, use_sgd=True, lr=0.001, momentum=0.9, no_cuda=False, seed=1, eval=False, num_points=1024, dropout=0.5, emb_dims=1024, k=20, model_path='')
+Using GPU : 0 from 2 devices
+Namespace(exp_name='exp', model='dgcnn', dataset='nagoya_dataset', batch_size=16, test_batch_size=16, epochs=10, use_sgd=True, lr=0.001, momentum=0.9, no_cuda=False, seed=1, eval=False, num_points=1024, dropout=0.5, emb_dims=1024, k=20, model_path='')
+Using GPU : 0 from 2 devices
+Namespace(exp_name='exp', model='dgcnn', dataset='nagoya_dataset', batch_size=16, test_batch_size=16, epochs=10, use_sgd=True, lr=0.001, momentum=0.9, no_cuda=False, seed=1, eval=False, num_points=1024, dropout=0.5, emb_dims=1024, k=20, model_path='')
+Using GPU : 0 from 2 devices
+Namespace(exp_name='exp', model='dgcnn', dataset='nagoya_dataset', batch_size=16, test_batch_size=16, epochs=10, use_sgd=True, lr=0.001, momentum=0.9, no_cuda=False, seed=1, eval=False, num_points=1024, dropout=0.5, emb_dims=1024, k=20, model_path='')
+Using GPU : 0 from 2 devices
+Namespace(exp_name='exp', model='dgcnn', dataset='nagoya_dataset', batch_size=16, test_batch_size=16, epochs=10, use_sgd=True, lr=0.001, momentum=0.9, no_cuda=False, seed=1, eval=False, num_points=1024, dropout=0.5, emb_dims=1024, k=20, model_path='')
+Using GPU : 0 from 2 devices
+Namespace(exp_name='exp', model='dgcnn', dataset='nagoya_dataset', batch_size=16, test_batch_size=16, epochs=10, use_sgd=True, lr=0.001, momentum=0.9, no_cuda=False, seed=1, eval=False, num_points=1024, dropout=0.5, emb_dims=1024, k=20, model_path='')
+Using GPU : 0 from 2 devices
+Namespace(exp_name='exp', model='dgcnn', dataset='nagoya_dataset', batch_size=16, test_batch_size=16, epochs=10, use_sgd=True, lr=0.001, momentum=0.9, no_cuda=False, seed=1, eval=False, num_points=1024, dropout=0.5, emb_dims=1024, k=20, model_path='')
+Using GPU : 0 from 2 devices
+Train 0, loss: 4.142737, train acc: 0.127604, train avg acc: 0.126016
+Valdation 0, loss: 3.199318, validation acc: 0.119863, validation avg acc: 0.110005
+Train 1, loss: 3.193820, train acc: 0.147569, train avg acc: 0.141996
+Valdation 1, loss: 2.891167, validation acc: 0.229452, validation avg acc: 0.237982
+Train 2, loss: 2.934124, train acc: 0.200521, train avg acc: 0.197020
+Valdation 2, loss: 2.764044, validation acc: 0.304795, validation avg acc: 0.300063
+Train 3, loss: 2.850434, train acc: 0.229167, train avg acc: 0.224746
+Valdation 3, loss: 2.699765, validation acc: 0.318493, validation avg acc: 0.315562
+Train 4, loss: 2.740256, train acc: 0.273438, train avg acc: 0.267731
+Namespace(exp_name='exp', model='dgcnn', dataset='nagoya_dataset', batch_size=32, test_batch_size=32, epochs=10, use_sgd=True, lr=0.001, momentum=0.9, no_cuda=False, seed=1, eval=False, num_points=1024, dropout=0.5, emb_dims=1024, k=20, model_path='')
+Using GPU : 0 from 2 devices
+Train 0, loss: 3.550121, train acc: 0.158854, train avg acc: 0.156516
+Valdation 0, loss: 4.814022, validation acc: 0.065068, validation avg acc: 0.071429
+Train 1, loss: 3.363512, train acc: 0.217882, train avg acc: 0.214828
+Valdation 1, loss: 3.448506, validation acc: 0.092466, validation avg acc: 0.105635
+Train 2, loss: 2.802949, train acc: 0.302951, train avg acc: 0.296626
+Valdation 2, loss: 2.611171, validation acc: 0.352740, validation avg acc: 0.350499
+Train 3, loss: 2.613558, train acc: 0.352431, train avg acc: 0.350364
+Valdation 3, loss: 2.393877, validation acc: 0.482877, validation avg acc: 0.491576
+Train 4, loss: 2.410515, train acc: 0.453993, train avg acc: 0.448233
+Valdation 4, loss: 2.250744, validation acc: 0.592466, validation avg acc: 0.588499
+Train 5, loss: 2.260245, train acc: 0.541667, train avg acc: 0.531745
+Valdation 5, loss: 2.290313, validation acc: 0.530822, validation avg acc: 0.512146
+Train 6, loss: 2.148877, train acc: 0.592882, train avg acc: 0.587010
+Valdation 6, loss: 2.119509, validation acc: 0.650685, validation avg acc: 0.643410
+Train 7, loss: 2.133837, train acc: 0.598958, train avg acc: 0.594227
+Valdation 7, loss: 2.091998, validation acc: 0.678082, validation avg acc: 0.674746
+Train 8, loss: 2.010482, train acc: 0.673611, train avg acc: 0.665327
+Valdation 8, loss: 1.993751, validation acc: 0.722603, validation avg acc: 0.715150
+Train 9, loss: 2.018289, train acc: 0.674479, train avg acc: 0.666858
+Valdation 9, loss: 1.987903, validation acc: 0.726027, validation avg acc: 0.716820

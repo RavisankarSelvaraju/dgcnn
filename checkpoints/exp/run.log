@@ -1,0 +1,10 @@
+Namespace(batch_size=2, dataset='nagoya_dataset', dropout=0.5, emb_dims=1024, epochs=250, eval=False, exp_name='exp', k=20, lr=0.001, model='dgcnn', model_path='', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=2, use_sgd=True)
+Using GPU : 0 from 1 devices
+Namespace(batch_size=2, dataset='nagoya_dataset', dropout=0.5, emb_dims=1024, epochs=250, eval=False, exp_name='exp', k=20, lr=0.001, model='dgcnn', model_path='', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=2, use_sgd=True)
+Using GPU : 0 from 1 devices
+Namespace(batch_size=2, dataset='nagoya_dataset', dropout=0.5, emb_dims=1024, epochs=250, eval=False, exp_name='exp', k=20, lr=0.001, model='dgcnn', model_path='', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=2, use_sgd=True)
+Using GPU : 0 from 1 devices
+Namespace(batch_size=2, dataset='nagoya_dataset', dropout=0.5, emb_dims=1024, epochs=250, eval=False, exp_name='exp', k=20, lr=0.001, model='dgcnn', model_path='', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=2, use_sgd=True)
+Using GPU : 0 from 1 devices
+Namespace(batch_size=32, dataset='nagoya_dataset', dropout=0.5, emb_dims=1024, epochs=250, eval=False, exp_name='exp', k=20, lr=0.001, model='dgcnn', model_path='', momentum=0.9, no_cuda=False, num_points=1024, seed=1, test_batch_size=32, use_sgd=True)
+Using GPU : 0 from 1 devices

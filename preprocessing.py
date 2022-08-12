@@ -4,12 +4,12 @@ import os
 from util import split_data
 
 
-split_data( source_dir="/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/data/nagoya_dataset",
-            destination_dir="/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/data/nagoya_dataset_split"
-            , ratio = (.8, .2) )
+split_data( source_dir="dataset/nagoya_dataset",
+            destination_dir="dataset/nagoya_dataset_split",ratio = (.8, .2) )
 
-dataset_dir = "/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/data/nagoya_dataset_split"
+dataset_dir = "dataset/nagoya_dataset_split"
 dataset_name = "nagoya_dataset_split"
+
 train_dir = os.path.join(dataset_dir, "train")
 test_dir = os.path.join(dataset_dir, "test")
 all_dataset = [train_dir, test_dir]
@@ -61,14 +61,14 @@ for split in ["train", "test"]:
     print ("Labels", labels.shape)
     
     #shuffle dataset
-    data, labels = dataset_util.randomize(data, labels)
+    data, labels = util.randomize(data, labels)
     
     data_dict = {}
     data_dict['data'] = data
     data_dict['labels'] = labels
     
     # save pickle file
-    dataset_util.save_dataset_and_compress(data_dict, dataset_dir+'/{}_{}'.format(dataset_name, split))  
+    util.save_dataset_and_compress(data_dict, dataset_dir+'/{}_{}'.format(dataset_name, split))  
     
     data = []
     labels = []

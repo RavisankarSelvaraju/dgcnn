@@ -36,14 +36,14 @@ def load_data(partition):
 
     if cluster:
 
-        file_path_train = '/scratch/rselva2s/bit-bots/dgcnn/pytorch/data/nagoya_split_data/nagoya_dataset_split_train.pgz'
-        file_path_test = '/scratch/rselva2s/bit-bots/dgcnn/pytorch/data/nagoya_split_data/nagoya_dataset_split_test.pgz'
+        file_path_train = 'dataset/nagoya_split_data/nagoya_dataset_split_train.pgz'
+        file_path_test = 'dataset/nagoya_split_data/nagoya_dataset_split_test.pgz'
 
     else:
 
         
-        file_path_train = '/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/data/nagoya_dataset_split/nagoya_dataset_split_train.pgz'
-        file_path_test = '/media/ravi/ubuntu_disk/ravi/atwork/other_repo/dgcnn/pytorch/data/nagoya_dataset_split/nagoya_dataset_split_test.pgz'
+        file_path_train = 'dataset/nagoya_dataset_split/nagoya_dataset_split_train.pgz'
+        file_path_test = 'dataset/nagoya_dataset_split/nagoya_dataset_split_test.pgz'
 
 
 

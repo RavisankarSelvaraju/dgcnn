@@ -75,7 +75,7 @@ class nagoya_dataset(Dataset):
 
         if self.partition == 'train':
             # pointcloud = translate_pointcloud(pointcloud) # add translation to the pointcloud 
-            pointcloud = jitter_pointcloud(pointcloud) # adding noise to the pointcloud
+            # pointcloud = jitter_pointcloud(pointcloud) # adding noise to the pointcloud
             np.random.shuffle(pointcloud)
 
         return pointcloud, label
